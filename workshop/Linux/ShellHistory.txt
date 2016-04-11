@@ -1,0 +1,146 @@
+    1  pwd
+    2  cd
+    3  export PROMPT_COMMAND="history 1> ~/Dropbox/Public/SCW_April2016_Prep/ShellHistory.txt"
+    4  pwd
+    5  echo "Welcome to our worshop!"
+    6  stop session
+    7  du -h
+    8  du -h
+    9  wc --help
+   10  wc --help
+   11  man wc
+   12  whoami
+   13  pwd
+   14  ls
+   15  ls Desktop/
+   16  ls
+   17  ls -F
+   18  ls -F Desktop/
+   19  pwd
+   20  ls -F Desktop/SCW_April2016/
+   21  cd Desktop/
+   22  ls
+   23  cd SCW_April2016/
+   24  ls
+   25  cd SCW_April2016/
+   26  cd ..
+   27  ls SCW_April2016/
+   28  ls -a SCW_April2016/
+   29  pwd
+   30  cd SCW_April2016/
+   31  cd ~ 
+   32  cd Desktop/SCW_April2016/
+   33  cd 
+   34  pwd
+   35  cd Desktop/SCW_April2016/
+   36  cd -
+   37  cd Desktop/SCW_April2016/
+   38  cd ..
+   39  cd SCW_April2016/
+   40  cd ~/Dropbox/Public/
+   41  ls
+   42  cd SCW_April2016
+   43  ls
+   44  mkdir Linux
+   45  ls
+   46  ls -F
+   47  mkdir Python
+   48  ls
+   49  mkdir SQL Git
+   50  ls
+   51  ls -f
+   52  ls -F
+   53  cd Linux/
+   54  ls
+   55  touch MyFirstFile.txt
+   56  cat MyFirstFile.txt 
+   57  npp MyFirstFile.txt 
+   58  cst MyFirstFile.txt 
+   59  cat MyFirstFile.txt 
+   60  mv MyFirstFile.txt MyFirstFile.sh
+   61  ls
+   62  mv MyFirstFile.sh ../Python/
+   63  ls ../Python/
+   64  ls
+   65  cp ../Python/MyFirstFile.sh .
+   66  ls
+   67  cp ../Python/MyFirstFile.sh ~/Dropbox/Public/SCW_April2016/Linux
+   68  ls
+   69  pwd
+   70  ls
+   71  Rm MyFirstFile.sh 
+   72  ls
+   73  ls
+   74  cd ..
+   75  ls
+   76  rmdir Python/
+   77  rm -r Python/
+   78  ls
+   79  mkdir Pyhto
+   80  mv Pyhto/ Python
+   81  ls
+   82  la Linux
+   83  ls Linux
+   84  ls Python/
+   85  ls
+   86  ls  -F
+   87  mv data_linux/ Linux/
+   88  ls
+   89  cd Linux
+   90  ls
+   91  cd Linux
+   92  pwd
+   93  ls
+   94  cd data_linux/
+   95  ls
+   96  ls -F
+   97  cat OECD_Countries_Full.txt 
+   98  head -n 10 OECD_Countries_Full.txt 
+   99  tail -n 20 OECD_Countries_Full.txt 
+  100  wc -l OECD_Countries_Full.txt 
+  101  cut -f1 OECD_Countries_Full.txt 
+  102  cut -f1 OECD_Countries_Full.txt > CountryList.txt
+  103  cat CountryList.txt 
+  104  sort CountryList.txt 
+  105  ls
+  106  sort CountryList.txt 
+  107  sort CountryList.txt > CountryList_Sorted.txt
+  108  uniq CountryList_Sorted.txt 
+  109  uniq CountryList_Sorted.txt > CountryList_uniq.txt
+  110  wc CountryList_uniq.txt 
+  111  wc -l CountryList_uniq.txt 
+  112  ls
+  113  ls -F
+  114  cut -f1 OECD_Countries_Full.txt | grep -v Country 
+  115  cut -f1 OECD_Countries_Full.txt | grep -v Country|head -n 4 
+  116  cut -f1 OECD_Countries_Full.txt | grep -v Country| sort| uniq| wc -l
+  117  cut -f1 OECD_Countries_Full.txt | grep -v Country| sort| uniq| wc -l > CountCountryList.txt
+  118  ls
+  119  cat CountCountryList.txt 
+  120  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012| 
+  121  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012
+  122  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012|cut -f1,6 
+  123  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012|cut -f1,6 | sort -n -k2 
+  124  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012|cut -f1,6 | sort -n -k2 |tail -n 1
+  125  grep Infant_mortality  OECD_Countries_Full.txt | grep 2012|cut -f1,6 | sort -n -k2 |tail -n 1 >CountryWithHighestMortality.txt
+  126  ls
+  127  echo "grep Infant_mortality  OECD_Countries_Full.txt | grep 2012|cut -f1,6 | sort -n -k2 |tail -n 1 >CountryWithHighestMortality.txt" > MyFirstScript.sh
+  128  ls
+  129  cat MyFirstScript.sh 
+  130  npp MyFirstScript.sh 
+  131  cat MyFirstScript.sh 
+  132  ./MyFirstScript.sh 
+  133  ls -l
+  134  chmod +x MyFirstScript.sh 
+  135  myName="Anya"
+  136  echo myName
+  137  echo $myName
+  138  ls 
+  139  ./MyFirstScript_2.sh
+  140  ls
+  141  cat CountryWithHighestMortality.txt 
+  142  ls
+  143  cat MyFirstScript_3.sh 
+  144  ./MyFirstScript_3.sh OECD_Countries_Full.txt 
+  145  ls
+  146  cat CountryWithHighestMortality_3.txt 
