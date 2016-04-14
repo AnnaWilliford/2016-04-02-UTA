@@ -1,0 +1,232 @@
+---
+title: "Python-Part II"
+author: "Mehdi Eslamieh"
+date: "March 29, 2016"
+output: 
+  html_document:
+    theme: cosmo
+    toc: yes
+    toc_depth: 3
+  pdf_document:
+    toc: yes
+---
+
+## 1. Statistical analysis with Pandas
+1. Import pandas
+
+```text
+
+import matplotlib.pyplot as plt
+import pandas as pd #this is how I usually import pandas
+import sys #only needed to determine Python version number
+import matplotlib #only needed to determine Matplotlib version number
+from pandas import *
+%matplotlib inline #Enable inline plotting
+```
+2. Check the version of Pandas
+```text
+pd.__version__
+```
+
+3. Open and read data
+
+```text
+df = pd.read_csv(My_data)   #Read the dataset
+
+df                          #look at data frame
+
+data = read_csv('Desktop/SCW/Test/Main_data.csv') #Easier method
+
+data.head()                # show first five rows-default
+
+data.head(10)              # show first ten rows
+
+data.tail()                 # show last five rows
+
+data.info()                 # summary of data
+
+data.ix[2:4,['Country', 'GNI']]  # slicing by row and column
+```
+
+4. Data description:
+
+```text
+
+data.dtypes
+data['GNI'].max() # data.GNI.max()            # Same notation for maximum
+data['GNI'].min() # data.GNI.min()            # Same notation for minimum
+data['GNI'].median() # data.GNI.median()      # Same notation for median
+data.describe()     # descriptive statistic of data frame
+data.GNI.describe() # descriptive statistic for a single column
+
+```
+
+5. Groupby:
+
+```text
+
+data_grouped = data.groupby('Year')  # group the Year 
+data_grouped.GNI.median()            # Show the median of each group(country) separately
+data_grouped.GNI.describe()
+
+data_grouped.get_group(2011).GNI.hist()  # make a histogram of 2011 only
+data_grouped.get_group(2012).GNI.hist() # run with above line make two histogram simultaneously, side by side plot
+
+data_grouped.boxplot(column = 'GNI')  # compare boxplots side by side
+
+df = pd.DataFrame(data_grouped)
+df.to_csv('Desktop/SCW/Test/Mehdi.csv')
+
+```
+
+6. Plotting
+
+```text
+
+data.GNI.hist()     # histogram plot   
+data.GNI.hist(bins=20) # set the number of bins for histogram
+data.IncomeInequality.plot.area() # area ploting
+
+df.boxplot(column='GNI')  # boxplot
+
+data['GNI'].plot()        #data.GNI.plot()
+
+data_2011 = read_csv('Desktop/SCW/Test/Year-2011.csv')
+d = data_2011.plot(color = 'red')
+d = data_2011.plot(kind = 'bar',color = 'red') # make a bar graph
+d = data_2011.plot(kind = 'barh',color = 'red') # make a horizontal bar graph
+
+
+d = data_2011.plot(kind = 'bar',color = 'red' , figsize= (20,5)) # Change the plot size 
+d.set_title ('YEAR 2011' , fontsize =40) # Add the title to the plot
+d.set_xlabel('xaxis',fontsize =20) # label the x axis
+d.set_ylabel('Yaxis',fontsize =20) # label the Y axis
+d.legend(['Test']) # Legend the plot
+
+<matplotlib.legend.Legend at 0x11be3b4978> will be gone with adding ; at the end
+
+
+d = data_2011.plot(kind = 'scatter', x ='InfantMortality' , y ='GNI',color = 'green' , figsize= (20,5))
+d.set_title ('YEAR 2011' , fontsize =40)
+d.set_xlabel('xaxis',fontsize =20)
+d.set_ylabel('Yaxis',fontsize =20)
+d.legend(['Test'])
+
+
+fig = d.get_figure()                # Save your figure in folder
+fig.savefig('Desktop/SCW/Test/Year_2011.png')
+```
+
+7. How to draw a scatter plot:
+
+```text
+
+d = data_2011.plot(kind = 'scatter', x ='InfantMortality' , y ='GNI',color = 'green' , figsize= (20,5),marker = '*',s =100)
+d.set_title ('Year 2011' , fontsize =40)
+d.set_xlabel('xaxis',fontsize =20)
+d.set_ylabel('Yaxis',fontsize =20)
+d.legend(['Test'])
+
+fig = d.get_figure()
+fig.savefig('Desktop/SCW/Test/scatter-plot.pdf')
+
+```
+
+8. Calculate correlation
+
+```text
+slope = data_2011['IncomeInequality'].corr(data_2011['InfantMortality'])
+slope
+```
+
+9. Linear Regression and colorful scatter plot:
+
+```text
+import matplotlib.pyplot as plt
+
+from matplotlib import cm
+cmap = cm.get_cmap('Spectral')
+d =data_2011.plot('InfantMortality', 'IncomeInequality', kind='scatter', s=10, figsize=(20,10),c=range(len(data_2011)), colormap=cmap,ax=axes[0])
+d.set_title ('Year 2011' , fontsize =40)
+d.set_xlabel('xaxis',fontsize =20)
+d.set_ylabel('Yaxis',fontsize =20)
+d.legend(['Test'])
+
+def label_point_orig(x, y, val, ax):
+    a = pd.concat({'x': x, 'y': y, 'val': val}, axis=1)
+
+    for i, point in a.iterrows():
+        ax.text(point['x'], point['y'], str(point['val']))
+        
+        
+label_point_orig(data_2011.InfantMortality, data_2011.IncomeInequality, data_2011.Country, plt)
+
+linear = np.polyfit(data_2011.IncomeInequality, data_2011.InfantMortality, 1)
+r_x, r_y = zip(*((i, i*linear[0] + linear[1]) for i in data_2011.IncomeInequality))
+linear_plot = pd.DataFrame({
+'IncomeInequality' : r_x,
+        
+'InfantMortality' : r_y
+})
+
+linear_plot.plot(kind='line', color='Red', x= 'IncomeInequality', y= 'InfantMortality')
+```
+
+10. Adding two graphs together    ##change ax=axes[0] to ax=axes[1]
+
+```text
+from matplotlib import cm
+cmap = cm.get_cmap('Spectral')
+fig, axes = plt.subplots(nrows=1, ncols=2)
+d =data_2011.plot('InfantMortality', 'IncomeInequality', kind='scatter', s=10, figsize=(20,10),c=range(len(data_2011)), colormap=cmap,ax=axes[1])
+d.set_title ('Year 2011' , fontsize =40)
+d.set_xlabel('xaxis',fontsize =20)
+d.set_ylabel('Yaxis',fontsize =20)
+d.legend(['Test'])
+
+def label_point_orig(x, y, val, ax):
+    a = pd.concat({'x': x, 'y': y, 'val': val}, axis=1)
+
+    for i, point in a.iterrows():
+        ax.text(point['x'], point['y'], str(point['val']))
+        
+        
+label_point_orig(data_2011.InfantMortality, data_2011.IncomeInequality, data_2011.Country, plt)
+linear = np.polyfit(data_2011.IncomeInequality, data_2011.InfantMortality, 1)
+r_x, r_y = zip(*((i, i*linear[0] + linear[1]) for i in data_2011.IncomeInequality))
+
+linear_plot = pd.DataFrame({
+'IncomeInequality' : r_x,
+        
+'InfantMortality' : r_y
+})
+
+s = linear_plot.plot(kind='bar', color='Red', x= 'IncomeInequality', y= 'InfantMortality',ax=axes[0])
+fig = s.get_figure()
+fig.savefig('two_plots.jpg')
+```
+
+11. Analyzing Data from Multiple Files
+
+```text
+    
+import glob
+
+x = 0
+for name in glob.glob('Ye*'):
+    print(name)
+    data = read_csv(name)
+    d = data.plot(kind = 'scatter', x ='InfantMortality' , y ='GNI',color = 'green' , figsize= (25,10),marker = '*',s =100)
+    d.set_title((name[5:9]), fontsize =40)
+    d.set_xlabel('InfantMortality',fontsize =20)
+    d.set_ylabel('GNI',fontsize =20)
+    d.legend(['Countries'])
+    fig = d.get_figure()
+    fig.savefig('All' + str(x)+'.pdf')
+    x +=1
+    
+```    
+## 2. Resources
+* http://pandas.pydata.org/
+* https://pypi.python.org/pypi/pandas/
+
