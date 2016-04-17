@@ -1,0 +1,89 @@
+Steps, Commands, and Challenges
+
+
+Setup Git for first time
+#set up your Git enviroment
+--global: the same configuration across all repositories
+git config --global user.name "Gaurav Kolekar"
+
+git config --global user.email "gaurav.kolekar01@gmail.com"
+git config --global color.ui "auto"
+
+
+git config --list
+
+
+
+
+
+
+Create a directory for your repos and clone the repository using the HTTPS link
+pwd
+cd SCW_April2016/Git
+
+mkdir Repos
+
+cd Repos
+
+git clone https://darencard.github.io
+
+
+
+Move into the repository and explore the files
+
+
+cd gauravkolekar.github.io
+
+ls	# no hidden files
+
+
+So what makes this a Git repository?
+
+ls -a	# shows all files, key is .git file
+
+Change directory to the upper-level
+cd ..
+    
+mkdir biology
+
+cd biology
+
+mkdir genetics ecology microbiology
+touch zoology botany
+
+Initialize your directory as a Git repository
+
+git init
+	# View the directory contents
+ls -a
+
+Go back to website repository and make some basic changes
+cd ..
+cd gauravkolekar.github.io
+notepad++ _config.yml
+--------------------
+name: Gaurav Kolekar
+description: Gaurav Kolekar's website
+url: gauravkolekar.github.io
+--------------------
+
+
+# copy link to GitHub avatar
+--------------------
+avatar: https://avatars2.githubusercontent.com/u/8263623?v=3&s=460
+--------------------
+
+
+<save and exit>
+
+
+Let's explore Git
+git status	# tracks changes,polling
+git add _config.yml	#stages all of the files in the current directory. pooling all files together that have changes
+git commit -m "adding basic website info/design"	#records changes to the repository. taking a snapshot
+git push origin master
+
+
+
+## CHALLENGE: Students should add basic contact info to _config.yml and should fill in basic information in about.md.
+They should then add and commit these changes.

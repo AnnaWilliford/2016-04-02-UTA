@@ -1,0 +1,282 @@
+Commands to run
+
+
+basics-
+
+Interactive mode-
+
+print("hello python")
+
+Script mode-
+
+hello.py
+print ("hello python!!")
+chmod +x hello.py
+./hello.py
+
+Comments in python-
+open the same hello.py
+add comments in it.
+
+Variables in python-
+p
+basics_python.py
+count   = 10           # An integer assignment
+miles   = 1000.0       # A floating point
+name    = "Devendra"       # A string
+
+print (count)
+print (miles)
+print (name)
+
+a, b, c = 1, 2, "Devendra"
+print (a)
+print (b)
+print (c)
+
+
+I/O variable-
+a=input("Enter value for a:")
+print(a)
+
+
+String Manipulation-
+
+str = 'Hello World!'
+
+print (str)          # Prints complete string
+print (str[0])       # Prints first character of the string
+print (str[2:5])     # Prints characters starting from 3rd to 5th
+print (str[2:])      # Prints string starting from 3rd character
+print (str[::2])
+print (str * 2)      # Prints string two times
+print (str + "TEST") # Prints concatenated string
+
+Lists -
+
+list = [ 'abcd', 86 , 1.3, 'devendra', 9.6 ]
+tinylist = [123, 'devendra']
+
+print (list)          # Prints complete list
+print (list[0])       # Prints first element of the list
+print (list[1:3])     # Prints elements starting from 2nd till 3rd 
+print (list[2:])      # Prints elements starting from 3rd element
+print (list[::2])
+print (tinylist * 2)  # Prints list two times
+print (list + tinylist) # Prints concatenated lists
+explain append function.
+
+exercise-
+
+Write a program that takes a list of numbers (for example, a = [5, 10, 15, 20, 25]) and makes a new list of only 
+the first and last elements of the given list. For practice, write this code inside a function.
+
+list=[5, 10, 15, 20, 25]
+list_ends(list):
+    return [list[0], list[len(list)-1]]
+
+
+Dictionary-
+
+dict = {}
+dict['one'] = "This is one"
+dict[2]     = "This is two"
+
+tinydict = {'name': 'Devendra','code':64, 'dept': 'marketing'}
+
+
+print (dict['one'])       # Prints value for 'one' key
+print (dict[2])           # Prints value for 2 key
+print (tinydict)          # Prints complete dictionary
+print (tinydict.keys())   # Prints all the keys
+print (tinydict.values()) # Prints all the values
+
+Exercise-
+Write a Python program to add key to a dictionary.
+
+Sample Dictionary : {0: 10, 1: 20}
+Expected Result : {0: 10, 1: 20, 2: 30}
+d = {0:10, 1:20}  
+print(d)  
+d.update({2:30})  
+print(d)
+
+
+If else loop-
+
+var = 100
+
+if ( var  == 100 ) :
+print ("Value of expression is 100")
+else
+print ("The value of expression is not 100")
+
+
+var = 100
+
+if var < 200:
+   print ("Expression value is less than 200")
+   if var == 150:
+      print ("Which is 150")
+   elif var == 100:
+      print ("Which is 100")
+   elif var == 50:
+      print ("Which is 50")
+elif var < 50:
+   print ("Expression value is less than 50")
+else:
+   print ("Could not find true expression")
+
+for loop-
+
+for letter in 'Python':     # First Example
+   print 'Current Letter :', letter
+
+fruits = ['banana', 'apple',  'mango']
+for fruit in fruits:        # Second Example
+   print 'Current fruit :', fruit
+
+for num in range(10,20):  #to iterate between 10 to 20
+   for i in range(2,num): #to iterate on the factors of the number
+      if num%i == 0:      #to determine the first factor
+         j=num/i          #to calculate the second factor
+         print '%d equals %d * %d' % (num,i,j)
+         break #to move to the next number, the #first FOR
+   else:                  # else part of the loop
+      print num, 'is a prime number'
+
+while loop-
+
+count = 0
+while (count < 9):
+   print 'The count is:', count
+   count = count + 1
+
+count = 0
+while count < 5:
+   print count, " is  less than 5"
+   count = count + 1
+else:
+   print count, " is not less than 5"
+
+
+Functions-
+
+
+def quadcube(x):
+return x**2, x**3
+
+a=quadcube(5)
+print(a)
+
+
+
+
+
+File I/O
+
+f=open("hello.py",r)
+data=f.read()
+print (data)
+
+f=open("hello.py",w)
+f.write( "Python is a great language.\nYeah its great!!\n")
+data=f.read()
+print (data)
+
+Command-Line Arguments:
+
+import sys
+print('version is', sys.version)
+
+python sys-version.py
+
+
+
+import sys
+
+def main():
+filename = sys.argv[0]
+f=open(filename,r)
+data=f.read()
+print (data)
+
+main()
+
+
+Handling Standard Input:
+
+
+import sys
+
+count = 0
+for line in sys.stdin:
+    count += 1
+
+print(count, 'lines in standard input')
+
+
+
+
+Errors:
+
+Syntax Error:
+
+def some_function()
+    msg = "hello, world!"
+    print(msg)
+     return msg
+
+Variable Name Error:
+
+for number in range(10):
+    count = count + number
+print("The count is: " + str(count))
+
+
+
+# Program to convert kilometers into miles 
+# Input is provided by the user in kilometers
+
+# take input from the user
+kilometers = float(input('How many kilometers?: '))
+
+# conversion factor
+conv_fac = 0.621371
+
+# calculate miles
+miles = kilometers * conv_fac
+print('%0.3f kilometers is equal to %0.3f miles' %(kilometers,miles))
+
+# Python Program to find the area of triangle
+# Three sides of the triangle a, b and c are provided by the user
+
+a = float(input('Enter first side: '))
+b = float(input('Enter second side: '))
+c = float(input('Enter third side: '))
+
+# calculate the semi-perimeter
+s = (a + b + c) / 2
+
+# calculate the area
+area = (s*(s-a)*(s-b)*(s-c)) ** 0.5
+print('The area of the triangle is %0.2f' %area)
+
+Defensive Programming
+numbers = [1.5, 2.3, 0.7, -0.001, 4.4]
+total = 0.0
+for n in numbers:
+    assert n > 0.0, 'Data should only contain positive values'
+    total += n
+print('total is:', total)
+
+Exercise
+Explain in words what the assertions in this function check, and for each one, give an example of input that will make that assertion fail.
+def running(values):
+    assert len(values) > 0
+    result = [values[0]]
+    for v in values[1:]:
+        assert result[-1] >= 0
+        result.append(result[-1] + v)
+        assert result[-1] >= result[0]
+    return result
